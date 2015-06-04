@@ -10,7 +10,10 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.util.FileManager;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -18,6 +21,8 @@ import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
@@ -53,6 +58,11 @@ public class Index extends javax.swing.JFrame {
         btnCargarArchivo = new javax.swing.JButton();
         btnVisualizarOnt = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        btnRealizarConsulta = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtConsulta = new javax.swing.JTextArea();
+        txtNombreConsulta = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,6 +96,19 @@ public class Index extends javax.swing.JFrame {
             }
         });
 
+        btnRealizarConsulta.setText("Realizar Consulta");
+        btnRealizarConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRealizarConsultaActionPerformed(evt);
+            }
+        });
+
+        txtConsulta.setColumns(20);
+        txtConsulta.setRows(5);
+        jScrollPane1.setViewportView(txtConsulta);
+
+        jLabel2.setText("Nombre de la Consulta (Opcional)");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,7 +116,8 @@ public class Index extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnVisualizarOnt)
+                    .addComponent(btnRealizarConsulta)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCargarArchivo)
                         .addGap(89, 89, 89)
@@ -102,8 +126,14 @@ public class Index extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtRutaArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscarArchivo)))
-                .addContainerGap(244, Short.MAX_VALUE))
+                        .addComponent(btnBuscarArchivo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnVisualizarOnt))
+                        .addGap(18, 18, 18)
+                        .addComponent(txtNombreConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +150,14 @@ public class Index extends javax.swing.JFrame {
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnVisualizarOnt)
-                .addContainerGap(387, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombreConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRealizarConsulta))
         );
 
         pack();
@@ -146,7 +183,7 @@ public class Index extends javax.swing.JFrame {
         this.modelFruitOntology.write(new PrintWriter(System.out));
 
         try {
-            FileOutputStream fout = new FileOutputStream("RDF's/Fruit.rdf");
+            FileOutputStream fout = new FileOutputStream("RDFs/Fruit.rdf");
             this.modelFruitOntology.write(fout);
         } catch (IOException e) {
             System.out.println("Exception caught" + e.getMessage());
@@ -154,48 +191,55 @@ public class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCargarArchivoActionPerformed
 
     private void btnVisualizarOntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarOntActionPerformed
-        try {                                                 
-            // TODO add your handling code here:
-            String pathToJar = "/Users/cristiancvanega/NetBeansProjects/Welkin Visor RDF/welkin.jar";
-            JarFile jarFile = null;
-            try {
-                jarFile = new JarFile(pathToJar);
-            } catch (IOException ex) {
-                Logger.getLogger(Index.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            Enumeration e = jarFile.entries();
-            
-            URL[] urls = { new URL("jar:file:" + pathToJar+"!/") };
-            URLClassLoader cl = URLClassLoader.newInstance(urls);
-            
-            while (e.hasMoreElements()) {
-                try {
-                    JarEntry je = (JarEntry) e.nextElement();
-                    if(je.isDirectory() || !je.getName().endsWith(".class")){
-                        continue;
-                    }
-                    // -6 because of .class
-                    String className = je.getName().substring(0,je.getName().length()-6);
-                    className = className.replace('/', '.');
-                    Class c = cl.loadClass(className);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(Index.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-            }
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(Index.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.execCommand("java -jar ../Welkin_Visor_RDF/welkin.jar");
     }//GEN-LAST:event_btnVisualizarOntActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.execCommand("java -jar ../Welkin_Visor_RDF/welkin.jar");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnRealizarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarConsultaActionPerformed
+        // TODO add your handling code here:
+        String nombreConsulta = this.txtNombreConsulta.getText().equals("") ? "q1.rq" : this.txtNombreConsulta.getText() + ".rq";
+        nombreConsulta = "consultas" + "/" + nombreConsulta;
+        this.writeFile(nombreConsulta, this.txtConsulta.getText());
+        
+        
+        this.execCommand("../apache-jena-2.13.0/bin/sparql --data=" + this.txtRutaArchivo.getText() + " --query=" + nombreConsulta);
+        
+    }//GEN-LAST:event_btnRealizarConsultaActionPerformed
+
+    private void writeFile(String nameFile, String contentFile){
+        BufferedWriter writer = null;
+        try {
+            //create a temporary file
+            File file = new File(nameFile);
+
+            // This will output the full path where the file will be written to...
+            System.out.println(file.getCanonicalPath());
+
+            writer = new BufferedWriter(new FileWriter(file));
+            writer.write(contentFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                // Close the writer regardless of what happens...
+                writer.close();
+            } catch (Exception e) {
+            }
+        }
+    }
+    
+    private void execCommand(String command){
         String s = null;
+        String response = "";
  
         try {
              
         // run the Unix "ps -ef" command
             // using the Runtime exec method:
-            Process p = Runtime.getRuntime().exec("java -jar ../Welkin_Visor_RDF/welkin.jar");
+            Process p = Runtime.getRuntime().exec(command);
              
             BufferedReader stdInput = new BufferedReader(new
                  InputStreamReader(p.getInputStream()));
@@ -207,8 +251,10 @@ public class Index extends javax.swing.JFrame {
             System.out.println("Here is the standard output of the command:\n");
             while ((s = stdInput.readLine()) != null) {
                 System.out.println(s);
+                response += s + "\n";
             }
-             
+            this.txtConsulta.setText(response);
+
             // read any errors from the attempted command
             System.out.println("Here is the standard error of the command (if any):\n");
             while ((s = stdError.readLine()) != null) {
@@ -221,8 +267,8 @@ public class Index extends javax.swing.JFrame {
             e.printStackTrace();
             System.exit(-1);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -261,9 +307,14 @@ public class Index extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarArchivo;
     private javax.swing.JButton btnCargarArchivo;
+    private javax.swing.JButton btnRealizarConsulta;
     private javax.swing.JButton btnVisualizarOnt;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea txtConsulta;
+    private javax.swing.JTextField txtNombreConsulta;
     private javax.swing.JTextField txtRutaArchivo;
     // End of variables declaration//GEN-END:variables
 }
