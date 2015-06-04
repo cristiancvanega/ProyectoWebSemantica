@@ -1,0 +1,123 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:j.0="http://purl.org/vocab/relationship/" > 
+  <rdf:Description rdf:about="http://Parcial1/Pinguino">
+    <j.0:SubClassOf rdf:resource="http://Parcial1/Ave"/>
+    <j.0:SubClassOf rdf:resource="http://Parcial1/Marino"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Ballena"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Delfin"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Pez"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Pajaro"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Cocodrilo"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/OsoPolar"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://Parcial1/Papagayo">
+    <j.0:SubClassOf rdf:resource="http://Parcial1/Ave"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Canario"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Flechero"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Buitre"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://Parcial1/Delfin">
+    <j.0:SubClassOf rdf:resource="http://Parcial1/Marino"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Besugo"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Tiburon"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Ballena"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Pez"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Pinguino"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://Parcial1/Flechero">
+    <j.0:SubClassOf rdf:resource="http://Parcial1/Ave"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Pajaro"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Papagayo"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Aguila"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Buitre"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://Parcial1/Ballena">
+    <j.0:SubClassOf rdf:resource="http://Parcial1/Marino"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Besugo"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Tiburon"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Pez"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Delfin"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Pinguino"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://Parcial1/Cocodrilo">
+    <j.0:Relacion rdf:resource="http://Parcial1/Pinguino"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Gato"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://Parcial1/Hamster">
+    <j.0:SubClassOf rdf:resource="http://Parcial1/Domestico"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Gato"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Perro"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://Parcial1/Perro">
+    <j.0:SubClassOf rdf:resource="http://Parcial1/Domestico"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Pez"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Hamster"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://Parcial1/Aguila">
+    <j.0:SubClassOf rdf:resource="http://Parcial1/Ave"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Pajaro"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Buitre"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Flechero"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://Parcial1/Pez">
+    <j.0:SubClassOf rdf:resource="http://Parcial1/Marino"/>
+    <j.0:SubClassOf rdf:resource="http://Parcial1/Domestico"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Besugo"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Tiburon"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Ballena"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Delfin"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Pinguino"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Pajaro"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Perro"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://Parcial1/Besugo">
+    <j.0:SubClassOf rdf:resource="http://Parcial1/Pez"/>
+    <j.0:SubClassOf rdf:resource="http://Parcial1/Marino"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Pez"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Delfin"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Tiburon"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Ballena"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://Parcial1/Canario">
+    <j.0:SubClassOf rdf:resource="http://Parcial1/Domestico"/>
+    <j.0:SubClassOf rdf:resource="http://Parcial1/Pajaro"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Gato"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Papagayo"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Pajaro"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://Parcial1/Buitre">
+    <j.0:Relacion rdf:resource="http://Parcial1/Pajaro"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Papagayo"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Aguila"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Flechero"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://Parcial1/Gato">
+    <j.0:SubClassOf rdf:resource="http://Parcial1/Domestico"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Canario"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Hamster"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Cocodrilo"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Pajaro"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://Parcial1/OsoPolar">
+    <j.0:Relacion rdf:resource="http://Parcial1/Pinguino"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://Parcial1/Tiburon">
+    <j.0:SubClassOf rdf:resource="http://Parcial1/Marino"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Besugo"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Delfin"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Ballena"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Pez"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://Parcial1/Pajaro">
+    <j.0:SubClassOf rdf:resource="http://Parcial1/Domestico"/>
+    <j.0:SubClassOf rdf:resource="http://Parcial1/Ave"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Pinguino"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Pez"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Canario"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Aguila"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Flechero"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Buitre"/>
+    <j.0:Relacion rdf:resource="http://Parcial1/Gato"/>
+  </rdf:Description>
+</rdf:RDF>
