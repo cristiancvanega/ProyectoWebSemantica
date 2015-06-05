@@ -47,6 +47,11 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="txtNombreConsulta" min="-2" pref="107" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="checkDeConsultaGuardada" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                      <Component id="btnListConsult" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="165" max="32767" attributes="0"/>
           </Group>
@@ -74,8 +79,13 @@
                   <Component id="txtNombreConsulta" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="296" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="btnListConsult" min="-2" max="-2" attributes="0"/>
+                  <Component id="checkDeConsultaGuardada" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="btnRealizarConsulta" min="-2" max="-2" attributes="0"/>
           </Group>
@@ -150,6 +160,19 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nombre de la Consulta (Opcional)"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnListConsult">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Listar Consultas"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListConsultActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="checkDeConsultaGuardada">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="de consulta guardada"/>
       </Properties>
     </Component>
   </SubComponents>

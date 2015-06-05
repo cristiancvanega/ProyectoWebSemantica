@@ -1,0 +1,883 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns="http://www.owl-ontologies.com/Ontology1431957468.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+  xml:base="http://www.owl-ontologies.com/Ontology1431957468.owl">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="Suelo">
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="puede_ser"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Suelo rdf:ID="arcilloso"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#puede_ser"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Suelo rdf:ID="arenoso"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#puede_ser"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Suelo rdf:ID="calizo"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#puede_ser"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Suelo rdf:ID="humifero"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#puede_ser"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Suelo rdf:ID="mixto"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:hasValue>
+              <Suelo rdf:ID="pedregoso"/>
+            </owl:hasValue>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#puede_ser"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Clima"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="es_afectado_por"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Planta"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="alimenta"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Semilla"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="influye_en"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Fruta">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="es_atacado_por"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Plaga"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="grosor_cascara"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Fruta rdf:ID="gruesa"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#grosor_cascara"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Fruta rdf:ID="delgada"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#grosor_cascara"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Fruta rdf:ID="mediana"/>
+            </owl:hasValue>
+          </owl:Restriction>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="Frugivoro"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="proporciona_alimento_a"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Clima"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#es_afectado_por"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="tienesabor"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Fruta rdf:ID="acida"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#tienesabor"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Fruta rdf:ID="dulce"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:hasValue>
+              <Fruta rdf:ID="semiacida"/>
+            </owl:hasValue>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#tienesabor"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:hasValue>
+              <Fruta rdf:ID="neutra"/>
+            </owl:hasValue>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#tienesabor"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="#Semilla"/>
+        </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="tiene"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:hasValue>
+              <Fruta rdf:ID="pequeño"/>
+            </owl:hasValue>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="diametro"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:hasValue>
+              <Fruta rdf:ID="grande"/>
+            </owl:hasValue>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#diametro"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#diametro"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Fruta rdf:ID="mediano"/>
+            </owl:hasValue>
+          </owl:Restriction>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:hasValue>
+              <Fruta rdf:ID="lisa"/>
+            </owl:hasValue>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="textura_cascara"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:hasValue>
+              <Fruta rdf:ID="rugosa"/>
+            </owl:hasValue>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#textura_cascara"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:hasValue>
+              <Fruta rdf:ID="suave"/>
+            </owl:hasValue>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#textura_cascara"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Planta"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="retoña_en"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="resistencia_cascara"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Fruta rdf:ID="duro"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#resistencia_cascara"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Fruta rdf:ID="medio"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#resistencia_cascara"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Fruta rdf:ID="blando"/>
+            </owl:hasValue>
+          </owl:Restriction>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Planta">
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="crecen_frutos_en"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Planta rdf:ID="rama"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#crecen_frutos_en"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Planta rdf:ID="tallo"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:hasValue>
+              <Planta rdf:ID="tronco"/>
+            </owl:hasValue>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#crecen_frutos_en"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="crece_en"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Suelo"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#es_afectado_por"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Clima"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Clima"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#tiene"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Plaga"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#es_atacado_por"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Semilla"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="nace_de"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Semilla">
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="tamaño"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Semilla rdf:ID="Grande"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#tamaño"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Semilla rdf:ID="Mediana"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:hasValue>
+              <Semilla rdf:ID="pequeña"/>
+            </owl:hasValue>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#tamaño"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:hasValue>
+              <Semilla rdf:ID="Cafe"/>
+            </owl:hasValue>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="tiene_color"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#tiene_color"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Semilla rdf:ID="Roja"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#tiene_color"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Semilla rdf:ID="negra"/>
+            </owl:hasValue>
+          </owl:Restriction>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:hasValue>
+              <Semilla rdf:ID="plana"/>
+            </owl:hasValue>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="tieneforma"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:hasValue>
+              <Semilla rdf:ID="Alargada"/>
+            </owl:hasValue>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#tieneforma"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:hasValue>
+              <Semilla rdf:ID="redonda"/>
+            </owl:hasValue>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#tieneforma"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:hasValue>
+              <Semilla rdf:ID="obalada"/>
+            </owl:hasValue>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#tieneforma"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Suelo"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="Germina_en"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Planta"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="produce_una"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Clima">
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="tipo_clima"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Clima rdf:ID="Calido"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#tipo_clima"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Clima rdf:ID="Templado"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:hasValue>
+              <Clima rdf:ID="Frio"/>
+            </owl:hasValue>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#tipo_clima"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="afecta"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Fruta"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#afecta"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Planta"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#afecta"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Suelo"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Consumidor">
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Frugivoro"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#puede_ser"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Plaga"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#puede_ser"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Frugivoro"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#puede_ser"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Plaga"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#puede_ser"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Plaga">
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:hasValue>
+              <Plaga rdf:ID="acaro"/>
+            </owl:hasValue>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#puede_ser"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#puede_ser"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Plaga rdf:ID="insecto"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#puede_ser"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Plaga rdf:ID="langosta"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:hasValue>
+              <Plaga rdf:ID="mosca"/>
+            </owl:hasValue>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#puede_ser"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:hasValue>
+              <Plaga rdf:ID="murcielago"/>
+            </owl:hasValue>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#puede_ser"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Semilla"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="ataca_a"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#ataca_a"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Planta"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="es_un_tipo_de"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Consumidor"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#ataca_a"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Fruta"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Frugivoro">
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:hasValue>
+              <Frugivoro rdf:ID="ardilla"/>
+            </owl:hasValue>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#puede_ser"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:hasValue>
+              <Frugivoro rdf:ID="murcielago_f"/>
+            </owl:hasValue>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#puede_ser"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#puede_ser"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Frugivoro rdf:ID="pez"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#puede_ser"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Frugivoro rdf:ID="primate"/>
+            </owl:hasValue>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#puede_ser"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <Frugivoro rdf:ID="tucan"/>
+            </owl:hasValue>
+          </owl:Restriction>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Consumidor"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#es_un_tipo_de"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Fruta"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="se_alimenta_de"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="#es_atacado_por">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Planta"/>
+          <owl:Class rdf:about="#Fruta"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#tienesabor">
+    <rdfs:domain rdf:resource="#Fruta"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#tieneforma">
+    <rdfs:domain rdf:resource="#Semilla"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#resistencia_cascara">
+    <rdfs:domain rdf:resource="#Fruta"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#Germina_en">
+    <rdfs:domain rdf:resource="#Semilla"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#retoña_en">
+    <rdfs:domain rdf:resource="#Fruta"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#tipo_clima">
+    <rdfs:domain rdf:resource="#Clima"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#proporciona_alimento_a">
+    <rdfs:domain rdf:resource="#Fruta"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#diametro">
+    <rdfs:domain rdf:resource="#Fruta"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#alimenta">
+    <rdfs:domain rdf:resource="#Suelo"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#tamaño">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Fruta"/>
+          <owl:Class rdf:about="#Semilla"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#es_afectado_por">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Suelo"/>
+          <owl:Class rdf:about="#Planta"/>
+          <owl:Class rdf:about="#Fruta"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#se_alimenta_de">
+    <rdfs:domain rdf:resource="#Frugivoro"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#produce_una">
+    <rdfs:domain rdf:resource="#Semilla"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#nace_de">
+    <rdfs:domain rdf:resource="#Planta"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#crecen_frutos_en">
+    <rdfs:domain rdf:resource="#Planta"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#crece_en">
+    <rdfs:domain rdf:resource="#Planta"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#tiene">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Planta"/>
+          <owl:Class rdf:about="#Fruta"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#puede_ser">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Consumidor"/>
+          <owl:Class rdf:about="#Suelo"/>
+          <owl:Class rdf:about="#Plaga"/>
+          <owl:Class rdf:about="#Frugivoro"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#afecta">
+    <rdfs:domain rdf:resource="#Clima"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#grosor_cascara">
+    <rdfs:domain rdf:resource="#Fruta"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#tiene_color">
+    <rdfs:domain rdf:resource="#Semilla"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#influye_en">
+    <rdfs:domain rdf:resource="#Suelo"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#ataca_a">
+    <rdfs:domain rdf:resource="#Plaga"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#textura_cascara">
+    <rdfs:domain rdf:resource="#Fruta"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#es_un_tipo_de">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Plaga"/>
+          <owl:Class rdf:about="#Frugivoro"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:ObjectProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4.8, Build 629)  http://protege.stanford.edu -->

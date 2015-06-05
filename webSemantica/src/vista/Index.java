@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,6 +37,7 @@ import java.util.logging.Logger;
 public class Index extends javax.swing.JFrame {
 
     Model modelFruitOntology = ModelFactory.createDefaultModel();
+
     /**
      * Creates new form Index
      */
@@ -63,6 +65,8 @@ public class Index extends javax.swing.JFrame {
         txtConsulta = new javax.swing.JTextArea();
         txtNombreConsulta = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        btnListConsult = new javax.swing.JButton();
+        checkDeConsultaGuardada = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,6 +113,15 @@ public class Index extends javax.swing.JFrame {
 
         jLabel2.setText("Nombre de la Consulta (Opcional)");
 
+        btnListConsult.setText("Listar Consultas");
+        btnListConsult.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListConsultActionPerformed(evt);
+            }
+        });
+
+        checkDeConsultaGuardada.setText("de consulta guardada");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,7 +145,11 @@ public class Index extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnVisualizarOnt))
                         .addGap(18, 18, 18)
-                        .addComponent(txtNombreConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtNombreConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(checkDeConsultaGuardada)
+                        .addGap(132, 132, 132)
+                        .addComponent(btnListConsult)))
                 .addContainerGap(165, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -154,8 +171,12 @@ public class Index extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombreConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnListConsult)
+                    .addComponent(checkDeConsultaGuardada))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRealizarConsulta))
         );
@@ -178,7 +199,7 @@ public class Index extends javax.swing.JFrame {
             throw new IllegalArgumentException("File: " + this.modelFruitOntology + " not found");
         }
         this.modelFruitOntology.read(in1, "");
-        
+
         this.modelFruitOntology.write(System.out, "RDF/XML-ABBREV");
         this.modelFruitOntology.write(new PrintWriter(System.out));
 
@@ -200,16 +221,29 @@ public class Index extends javax.swing.JFrame {
 
     private void btnRealizarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarConsultaActionPerformed
         // TODO add your handling code here:
-        String nombreConsulta = this.txtNombreConsulta.getText().equals("") ? "q1.rq" : this.txtNombreConsulta.getText() + ".rq";
-        nombreConsulta = "consultas" + "/" + nombreConsulta;
-        this.writeFile(nombreConsulta, this.txtConsulta.getText());
-        
-        
-        this.execCommand("../apache-jena-2.13.0/bin/sparql --data=" + this.txtRutaArchivo.getText() + " --query=" + nombreConsulta);
-        
+        String nombreConsulta = "";
+        if (this.checkDeConsultaGuardada.isSelected()) {
+            nombreConsulta = "consultas" + "/" + this.txtNombreConsulta.getText() + ".rq";
+        } else {
+            nombreConsulta = this.txtNombreConsulta.getText().equals("") ? "q1.rq" : this.txtNombreConsulta.getText() + ".rq";
+            nombreConsulta = "consultas" + "/" + nombreConsulta;
+            this.writeFile(nombreConsulta, this.txtConsulta.getText());
+        }
+        String command = "../apache-jena-2.13.0/bin/sparql --data=" + this.txtRutaArchivo.getText() + " --query=" + nombreConsulta;
+        System.out.println(command);
+        this.txtConsulta.setText(this.readFile(nombreConsulta));
+        this.txtConsulta.append("\n ------------------------------");
+        this.execCommand(command);
+
     }//GEN-LAST:event_btnRealizarConsultaActionPerformed
 
-    private void writeFile(String nameFile, String contentFile){
+    private void btnListConsultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListConsultActionPerformed
+        // TODO add your handling code here:
+        this.txtConsulta.setText("");
+        this.execCommand("ls consultas");
+    }//GEN-LAST:event_btnListConsultActionPerformed
+
+    private void writeFile(String nameFile, String contentFile) {
         BufferedWriter writer = null;
         try {
             //create a temporary file
@@ -230,45 +264,78 @@ public class Index extends javax.swing.JFrame {
             }
         }
     }
-    
-    private void execCommand(String command){
+
+    private void execCommand(String command) {
         String s = null;
         String response = "";
- 
+
         try {
-             
-        // run the Unix "ps -ef" command
+
+            // run the Unix "ps -ef" command
             // using the Runtime exec method:
             Process p = Runtime.getRuntime().exec(command);
-             
-            BufferedReader stdInput = new BufferedReader(new
-                 InputStreamReader(p.getInputStream()));
- 
-            BufferedReader stdError = new BufferedReader(new
-                 InputStreamReader(p.getErrorStream()));
- 
+
+            BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+            BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+
             // read the output from the command
             System.out.println("Here is the standard output of the command:\n");
             while ((s = stdInput.readLine()) != null) {
                 System.out.println(s);
                 response += s + "\n";
             }
-            this.txtConsulta.setText(response);
+            this.txtConsulta.append(response);
 
             // read any errors from the attempted command
             System.out.println("Here is the standard error of the command (if any):\n");
             while ((s = stdError.readLine()) != null) {
                 System.out.println(s);
             }
-             
-        }
-        catch (IOException e) {
+
+        } catch (IOException e) {
             System.out.println("exception happened - here's what I know: ");
             e.printStackTrace();
             System.exit(-1);
         }
     }
-    
+
+    private String readFile(String file) {
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        String response = "";
+
+        try {
+         // Apertura del fichero y creacion de BufferedReader para poder
+            // hacer una lectura comoda (disponer del metodo readLine()).
+            archivo = new File(file);
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+
+            // Lectura del fichero
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                System.out.println(linea);
+                response += "\n" + linea;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+         // En el finally cerramos el fichero, para asegurarnos
+            // que se cierra tanto si todo va bien como si salta 
+            // una excepcion.
+            try {
+                if (null != fr) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        return response;
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -307,8 +374,10 @@ public class Index extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarArchivo;
     private javax.swing.JButton btnCargarArchivo;
+    private javax.swing.JButton btnListConsult;
     private javax.swing.JButton btnRealizarConsulta;
     private javax.swing.JButton btnVisualizarOnt;
+    private javax.swing.JCheckBox checkDeConsultaGuardada;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
